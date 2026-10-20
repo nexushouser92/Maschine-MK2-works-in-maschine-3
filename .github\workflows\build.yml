@@ -1,0 +1,56 @@
+# Tests and builds the MK2 Activator on every push and pull request.
+# Pushing a tag like v1.0.1 also publishes a GitHub Release with the .exe and its SHA-256.
+name: Build
+
+on:
+  push:
+    branches: [main, master]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Build MK2 Activator.exe
+        run: |
+          python -m pip install pyinstaller==6.11.1
+          python -m PyInstaller --onefile --windowed --uac-admin --name "MK2 Activator" mk2_patcher.py
+
+      - name: Compute SHA-256
+        shell: pwsh
+        run: |
+          $hash = (Get-FileHash "dist\MK2 Activator.exe" -Algorithm SHA256).Hash.ToLower()
+          "$hash  MK2 Activator.exe" | Out-File dist\SHA256.txt -Encoding ascii
+          Get-Content dist\SHA256.txt
+          Copy-Item release\README.txt dist\README.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MK2-Activator
+          path: |
+            dist/MK2 Activator.exe
+            dist/SHA256.txt
+            dist/README.txt
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/MK2 Activator.exe
+            dist/SHA256.txt
+            dist/README.txt
+          generate_release_notes: true

@@ -38,6 +38,12 @@ To undo it, open the Activator again and click **Restore original**. Repairing M
 
 The Activator is not digitally signed, so Windows SmartScreen shows "Unknown publisher". Click **More info** → **Run anyway**. The source code is in this repository.
 
+Every release `.exe` is built by [GitHub Actions](../../actions) from the code in this repository, and each release includes a `SHA256.txt` so you can check your download:
+
+```powershell
+Get-FileHash "MK2 Activator.exe" -Algorithm SHA256
+```
+
 ## Build it yourself
 
 ```bash
@@ -47,6 +53,21 @@ python -m PyInstaller --onefile --windowed --uac-admin --name "MK2 Activator" mk
 
 The result is `dist\MK2 Activator.exe`.
 
+## Development
+
+Run the tests (they use small synthetic files, no Maschine binary needed):
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+To publish a release, push a version tag. The workflow runs the tests, builds the `.exe` and attaches it with its SHA-256 and `release/README.txt`:
+
+```bash
+git tag v1.0.1
+git push origin v1.0.1
+```
+
 ---
 
-This repository contains no Native Instruments code or binaries.
+This repository contains no Native Instruments code or binaries. Released under the [MIT License](LICENSE).

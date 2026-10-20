@@ -18,10 +18,7 @@ Makes your **Maschine MK2** work in the **Maschine 3** software again (Windows).
 
 ### Supported versions
 
-| Maschine 3 | `Maschine 3` SHA-256 |
-|---|---|
-| 3.6.0 | 
-| 3.7.1 | 
+Maschine 3 - 3.6.0, 3.7.1
 
 Any other version is refused and nothing is changed.
 

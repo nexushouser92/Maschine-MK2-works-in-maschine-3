@@ -1,6 +1,7 @@
 # Maschine MK2 Works in Maschine 3
 
-![MK2 Activator for Maschine 3](assets/banner.png)
+<img width="1243" height="634" alt="banner" src="https://github.com/user-attachments/assets/07cacfa8-aee2-42aa-b85f-bce3ba61ccf8" />
+
 
 Makes your **Maschine MK2** work in the **Maschine 3** software again (Windows). Download **MK2 Activator**, click one button, and play.
 

@@ -20,8 +20,8 @@ Makes your **Maschine MK2** work in the **Maschine 3** software again (Windows).
 
 | Maschine 3 | `Maschine 3` SHA-256 |
 |---|---|
-| 3.6.0 | `968c0d3fc5e8e1f145b5ad95ab9862ac8cec508ccfea4768f09a85e5c9b2393a` |
-| 3.7.1 | `432948f7da644f092312c1c35dbc93c74185b4a7cd1fc869e444bcc6f8b7f20b` |
+| 3.6.0 | 
+| 3.7.1 | 
 
 Any other version is refused and nothing is changed.
 

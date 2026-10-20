@@ -35,9 +35,11 @@ To undo it, open the Activator again and click **Restore original**. Repairing M
 
 **After every Maschine 3 update from Native Access, run the Activator again.**
 
-### Windows says the app is dangerous
+### Windows or the antivirus says the app is dangerous
 
-The Activator is not digitally signed, so Windows SmartScreen shows "Unknown publisher". Click **More info** → **Run anyway**. The source code is in this repository.
+The Activator is not digitally signed, so Windows SmartScreen shows "Unknown publisher". Click **More info** → **Run anyway**.
+
+A few antivirus engines flag apps made with PyInstaller as false positives, because they share the same launcher as some malware written in Python. Each release links its VirusTotal report.
 
 Every release `.exe` is built by [GitHub Actions](../../actions) from the code in this repository, and each release includes a `SHA256.txt` so you can check your download:
 
@@ -62,12 +64,14 @@ Run the tests (they use small synthetic files, no Maschine binary needed):
 python -m unittest discover -s tests -v
 ```
 
-To publish a release, push a version tag. The workflow runs the tests, builds the `.exe` and attaches it with its SHA-256 and `release/README.txt`:
+To publish a release, create a new version tag: on GitHub go to **Releases → Draft a new release**, type a new tag (for example `v1.0.2`) and publish, or from the command line:
 
 ```bash
-git tag v1.0.1
-git push origin v1.0.1
+git tag v1.0.2
+git push origin v1.0.2
 ```
+
+The workflow runs the tests, builds the `.exe` and attaches it to the release with its `SHA256.txt` and `release/README.txt`.
 
 ---
 

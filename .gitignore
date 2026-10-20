@@ -1,0 +1,6 @@
+*.exe
+*.mk2tmp
+dist/
+build/
+__pycache__/
+*.spec

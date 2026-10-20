@@ -94,7 +94,7 @@ class App:
         elif self.state == "patched":
             self.show(f"Maschine {self.version} with the MK2 enabled.", "#070", "Restore original")
         else:
-            known = ", ".join(v for v, _ in VERSIONS.values())
+            known = ", ".join(dict.fromkeys(v for v, _ in VERSIONS.values()))
             self.show(f"This Maschine 3 version is not supported (supported: {known}). "
                       "Nothing was changed.", "#b00", None)
 

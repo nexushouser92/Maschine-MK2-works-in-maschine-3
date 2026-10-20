@@ -39,9 +39,18 @@ def maschine_running():
 def write_atomic(path, data):
     """Writes to a temp file next to the target and swaps it in one step: never leaves a half-written .exe."""
     tmp = path + ".mk2tmp"
-    with open(tmp, "wb") as f:
-        f.write(data)
-    os.replace(tmp, path)
+    try:
+        with open(tmp, "wb") as f:
+            f.write(data)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, path)
+    except OSError:
+        try:
+            os.remove(tmp)
+        except OSError:
+            pass
+        raise
 
 
 class App:
@@ -94,7 +103,7 @@ class App:
         self.action.config(text=action or "—", state="normal" if action else "disabled")
 
     def choose(self):
-        path = filedialog.askopenfilename(title="Locate Maschine 3.exe", filetypes=[("Maschine 3", EXE_NAME)])
+        path = filedialog.askopenfilename(title="Locate Maschine 3.exe", filetypes=[("Maschine 3", (EXE_NAME,))])
         if path:
             self.path = os.path.normpath(path)
             self.refresh()

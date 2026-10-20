@@ -2,8 +2,8 @@
 free slot belongs to each unsupported controller.
 
 Usage:
-    python pruebas_slot.py <original.exe> <output_folder> <PID hex> <slot hex> [<slot hex> ...]
-    python pruebas_slot.py "Maschine 3.7.1.original.exe" tests 1200 350 398 3b0
+    python slot_tests.py <original.exe> <output_folder> <PID hex> <slot hex> [<slot hex> ...]
+    python slot_tests.py "Maschine 3.7.1.original.exe" tests 1200 350 398 3b0
 
 Starts from the same blocks as patch_mk2.py (known versions only) and changes the slot and the PID.
 """

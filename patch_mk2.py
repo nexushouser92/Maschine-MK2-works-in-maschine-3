@@ -26,6 +26,13 @@ VERSIONS = {
         (0x5C093D, 0x1405C153D, bytes.fromhex("BA00150000"), bytes.fromhex("BA40110000"),
          "MOV EDX,0x1500 (Jam PID) -> MOV EDX,0x1140 (MK2 PID)"),
     ]),
+    # 3.7.1 already modified elsewhere (NI signature fails); same Jam block and offsets as the official 3.7.1.
+    "b92b63f3fccb651703cb7729480cd811572303d2fed69556b8de4419a606c9dd": ("3.7.1", [
+        (0x5C08ED, 0x1405C14ED, bytes.fromhex("480508030000"), bytes.fromhex("480568030000"),
+         "ADD RAX,0x308 (Jam subscription) -> ADD RAX,0x368 (MK2 subscription)"),
+        (0x5C093D, 0x1405C153D, bytes.fromhex("BA00150000"), bytes.fromhex("BA40110000"),
+         "MOV EDX,0x1500 (Jam PID) -> MOV EDX,0x1140 (MK2 PID)"),
+    ]),
 }
 
 
@@ -74,7 +81,7 @@ def main():
         sys.exit("ABORTED: the input is not a patched file of any known version")
     if not revert and state != "original":
         sys.exit(f"ABORTED: the input SHA-256 does not match any analyzed version\n  {sha256(data)}\n"
-                 f"  known: {', '.join(v for v, _ in VERSIONS.values())}")
+                 f"  known: {', '.join(dict.fromkeys(v for v, _ in VERSIONS.values()))}")
     out, log = apply(data, patches, revert)
     if out is None:
         sys.exit(f"ABORTED {log}")

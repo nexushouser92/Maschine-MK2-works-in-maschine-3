@@ -9,7 +9,8 @@ Lets you use the Maschine MK2 with Maschine 3.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 BEFORE YOU START
-- You need Maschine 3 installed and activated with Native Access, in one of these versions: 3.6.0 or 3.7.1.
+- You need Maschine 3 installed and activated with Native Access.
+  Tested with 3.6.0 and 3.7.1. Other 3.x versions work if the Activator recognizes them.
   (To check your version: open Maschine 3 > Help > About.)
 - This is not official Native Instruments software. Use it at your own risk.
 
@@ -29,9 +30,9 @@ FAQ
 - Windows or the antivirus says the app is dangerous:
   the app is not digitally signed, so Windows shows "Unknown publisher".
   In the blue SmartScreen window click "More info" > "Run anyway".
-- It says "version is not supported":
-  your Maschine 3 is a different version. Nothing was changed.
+- It says "cannot be patched safely":
+  the Activator did not find the code it expects in your Maschine 3. Nothing was changed.
 - Native Access updated Maschine 3 and the MK2 stopped working:
-  updates remove the patch. If the new version is supported, click "Enable MK2" again.
+  updates remove the patch. Open the Activator and click "Enable MK2" again.
 - It cannot find Maschine 3:
   click "Choose another file..." and locate "Maschine 3.exe" in the folder where you installed it.

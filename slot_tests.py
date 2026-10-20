@@ -1,4 +1,3 @@
-
 """Builds test variants: the Jam block subscribes <PID> using <slot>, to find out which
 free slot belongs to each unsupported controller.
 

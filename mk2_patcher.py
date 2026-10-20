@@ -1,7 +1,7 @@
 """MK2 Activator for Maschine 3: a GUI over patch_mk2.py for non-technical users.
 
 Finds Maschine 3.exe (NI registry key or default path), tells whether it is original or patched,
-and enables the MK2 or restores the original. Only touches known versions (see VERSIONS in patch_mk2.py).
+and enables the MK2 or restores the original. Only touches files where identify() in patch_mk2.py finds the Jam block.
 """
 import ctypes
 import os
@@ -11,7 +11,7 @@ import tkinter as tk
 import winreg
 from tkinter import filedialog, messagebox
 
-from patch_mk2 import VERSIONS, apply, identify
+from patch_mk2 import apply, identify
 
 EXE_NAME = "Maschine 3.exe"
 DEFAULT_PATH = r"C:\Program Files\Native Instruments\Maschine 3\Maschine 3.exe"
@@ -94,8 +94,7 @@ class App:
         elif self.state == "patched":
             self.show(f"Maschine {self.version} with the MK2 enabled.", "#070", "Restore original")
         else:
-            known = ", ".join(dict.fromkeys(v for v, _ in VERSIONS.values()))
-            self.show(f"This Maschine 3 version is not supported (supported: {known}). "
+            self.show("This Maschine 3.exe cannot be patched safely: the expected code was not found. "
                       "Nothing was changed.", "#b00", None)
 
     def show(self, text, color, action):

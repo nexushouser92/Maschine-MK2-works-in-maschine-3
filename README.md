@@ -47,32 +47,6 @@ Every release `.exe` is built by [GitHub Actions](../../actions) from the code i
 Get-FileHash "MK2 Activator.exe" -Algorithm SHA256
 ```
 
-## Build it yourself
-
-```bash
-python -m pip install pyinstaller
-python -m PyInstaller --onefile --windowed --uac-admin --name "MK2 Activator" mk2_patcher.py
-```
-
-The result is `dist\MK2 Activator.exe`.
-
-## Development
-
-Run the tests (they use small synthetic files, no Maschine binary needed):
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-To publish a release, create a new version tag: on GitHub go to **Releases → Draft a new release**, type a new tag (for example `v1.0.2`) and publish, or from the command line:
-
-```bash
-git tag v1.0.2
-git push origin v1.0.2
-```
-
-The workflow runs the tests, builds the `.exe` and attaches it to the release with its `SHA256.txt` and `release/README.txt`.
-
 ---
 
 This repository contains no Native Instruments code or binaries. Released under the [MIT License](LICENSE).
